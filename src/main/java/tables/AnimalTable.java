@@ -1,13 +1,9 @@
 package tables;
-
 import db.MySQLConnect;
 import objects.Animal;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AnimalTable extends AbsTable {
     private static final String NAME = "animals";
@@ -24,7 +20,6 @@ public class AnimalTable extends AbsTable {
     }
 
     public void print(ResultSet rs) throws SQLException {
-        //Вывод заголовка на экран
         System.out.printf("%-10s %-10s %-10s %-10s %-10s %-5s%n", "ID", "TYPE", "NAME", "COLOR", "WEIGHT", "Age");
         System.out.println("----------------------------------------------------------------");
 

@@ -1,13 +1,10 @@
 package factory;
-
 import data.ListOfAnimals;
 import objects.Animal;
 import utils.ValidateNumber;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import data.ListOfAnimals;
 
 public class AnimalCreate {
     public static  Animal createAnimalWithData() {

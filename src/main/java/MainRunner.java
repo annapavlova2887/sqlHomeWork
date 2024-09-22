@@ -12,8 +12,8 @@ import static factory.AnimalCreate.createAnimalWithData;
 
 public class MainRunner extends Animal {
 
-    private static Scanner console = new Scanner(System.in);
-    private static ValidateNumber validateNumber = new ValidateNumber();
+    private static  Scanner console = new Scanner(System.in);
+    private static  ValidateNumber validateNumber = new ValidateNumber();
 
     public MainRunner(String type, String name, String color, int weight, int age) {
         super(type, name, color, weight, age);
@@ -30,7 +30,7 @@ public class MainRunner extends Animal {
         columnsAnimalTable.add("color VARCHAR(20)");
         columnsAnimalTable.add("weight INT");
         columnsAnimalTable.add("age INT");
-        animalTable.create(columnsAnimalTable); //- каждый раз создает новую таблицу
+        animalTable.create(columnsAnimalTable);
 
         while (true) {
             List<String> commandNames = new ArrayList<>();
