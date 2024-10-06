@@ -5,7 +5,7 @@ public enum ListOfAnimals {
     DOG,
     DUCK;
 
-    public static ListOfAnimals fromString(String animal) {
+    public static ListOfAnimals fromString (String animal) {
         try {
             return ListOfAnimals.valueOf(animal.trim().toUpperCase());
         }

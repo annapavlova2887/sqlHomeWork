@@ -1,6 +1,7 @@
 import objects.Animal;
 import tables.AnimalTable;
 import data.Comands;
+import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,22 +16,13 @@ public class MainRunner extends Animal {
     private static  Scanner console = new Scanner(System.in);
     private static  ValidateNumber validateNumber = new ValidateNumber();
 
-    public MainRunner(String type, String name, String color, int weight, int age) {
-        super(type, name, color, weight, age);
-    }
+public MainRunner(String type, String name, String color, int weight, int age) {
+super(type, name, color, weight, age);
+}
 
-    public static void main(String[] args) throws IOException, SQLException  {
+    public static void main(String[] args) throws IOException, SQLException, SQLSyntaxErrorException {
 
         AnimalTable animalTable = new AnimalTable();
-
-        List<String> columnsAnimalTable = new ArrayList<>();
-        columnsAnimalTable.add("id INT AUTO_INCREMENT PRIMARY KEY");
-        columnsAnimalTable.add("type VARCHAR(20)");
-        columnsAnimalTable.add("name VARCHAR(20)");
-        columnsAnimalTable.add("color VARCHAR(20)");
-        columnsAnimalTable.add("weight INT");
-        columnsAnimalTable.add("age INT");
-        animalTable.create(columnsAnimalTable);
 
         while (true) {
             List<String> commandNames = new ArrayList<>();
@@ -38,8 +30,8 @@ public class MainRunner extends Animal {
                 commandNames.add(commandData.name().toLowerCase());
             }
             System.out.printf("Введите команду %s: \n", String.join("/", commandNames));
-            String input = console.next();
-            Comands command = Comands.fromString(input);
+            String inputForComands = console.next();
+            Comands command = Comands.fromString(inputForComands);
 
             if (command==null) {
                 System.out.println("Введена неверная команда");
@@ -97,7 +89,7 @@ public class MainRunner extends Animal {
                                 System.out.println(item.toString());
                             }
                         }
-                    } catch (NullPointerException er) {
+                    } catch (NullPointerException | SQLSyntaxErrorException er) {
                         System.out.println("Ошибка запроса, попробуйте еще раз");
                     }
 

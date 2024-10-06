@@ -10,7 +10,7 @@ public class AnimalCreate {
     public static  Animal createAnimalWithData() {
 
         ValidateNumber validateNumber = new ValidateNumber();
-        Scanner console2 = new Scanner(System.in);
+        Scanner consoleForAnCreate = new Scanner(System.in);
 
         boolean chekAninal = false;
         ListOfAnimals animal = null;
@@ -22,25 +22,25 @@ public class AnimalCreate {
         }
         System.out.printf("Какое вы животное %s: \n", String.join("/", listOfAnimalsNames));
         while (!chekAninal) {
-            String input2 = console2.next();
-            animal = ListOfAnimals.fromString(input2);
+            String inputForAnimals = consoleForAnCreate.next();
+            animal = ListOfAnimals.fromString(inputForAnimals);
             if (animal == null) {
                 System.out.println("У нас нет такого животного, попробуйте еще раз");
             } else {
                 chekAninal = true;
-                animalType=input2.trim().toUpperCase();
+                animalType=inputForAnimals.trim().toUpperCase();
             }
         }
 
         System.out.println("Введите имя");
-        String nameconsole = console2.next();
+        String nameconsole = consoleForAnCreate.next();
 
         int ageconsole = 0;
         System.out.println("Введите возраст целым числом, до 3 знаков включительно");
         String ageString = null;
 
         while (true) {
-            ageString = console2.next();
+            ageString = consoleForAnCreate.next();
             if (!validateNumber.isNumber(ageString) || ageString.length() > 3) {
                 System.out.println("Неверно введен возраст, попробуйте еще раз");
             } else {
@@ -58,7 +58,7 @@ public class AnimalCreate {
         String waString = null;
 
         while (true) {
-            waString = console2.next();
+            waString = consoleForAnCreate.next();
             if (!validateNumber.isNumber(waString) || waString.length() > 3) {
                 System.out.println("Неверно введен вес, попробуйте еще раз");
             } else {
@@ -72,7 +72,7 @@ public class AnimalCreate {
         }
 
         System.out.println("Введите цвет");
-        String colconsole = console2.next();
+        String colconsole = consoleForAnCreate.next();
 
         return new AnimalFactory(animalType, nameconsole, colconsole, waСonsole, ageconsole).create(animal);
     }

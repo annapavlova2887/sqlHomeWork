@@ -1,7 +1,6 @@
 package objects;
 
-// должен быть абстрактным?
-public class Animal implements ObjectDB {
+public class Animal {
     private int id;
     private String type, name, color;
     private int weight, age;
