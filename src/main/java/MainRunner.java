@@ -11,14 +11,10 @@ import java.sql.SQLException;
 import static factory.AnimalCreate.createAnimalWithData;
 
 
-public class MainRunner extends Animal {
+public class MainRunner {
 
     private static  Scanner console = new Scanner(System.in);
     private static  ValidateNumber validateNumber = new ValidateNumber();
-
-public MainRunner(String type, String name, String color, int weight, int age) {
-super(type, name, color, weight, age);
-}
 
     public static void main(String[] args) throws IOException, SQLException, SQLSyntaxErrorException {
 
@@ -26,9 +22,11 @@ super(type, name, color, weight, age);
 
         while (true) {
             List<String> commandNames = new ArrayList<>();
+
             for (Comands commandData: Comands.values()) {
                 commandNames.add(commandData.name().toLowerCase());
             }
+
             System.out.printf("Введите команду %s: \n", String.join("/", commandNames));
             String inputForComands = console.next();
             Comands command = Comands.fromString(inputForComands);
@@ -44,8 +42,8 @@ super(type, name, color, weight, age);
                     Animal animals = createAnimalWithData();
                     animalTable.write(animals);
                     animals.say();
-
                     break;
+
                 case UPDATE:
 
                     ArrayList<Animal> animalForUpdate = animalTable.read("all");
@@ -55,6 +53,7 @@ super(type, name, color, weight, age);
                     } else {
                         System.out.println("Введите id животного, которое хотите изменить");
                     }
+
                     String idString = null;
                     int id = 0;
 
@@ -76,6 +75,7 @@ super(type, name, color, weight, age);
                     newAnimal.setId(id);
                     animalTable.update(newAnimal);
                     break;
+
                 case LIST:
 
                     System.out.println("Введите фильтр или all (все животные): ");
@@ -92,8 +92,8 @@ super(type, name, color, weight, age);
                     } catch (NullPointerException | SQLSyntaxErrorException er) {
                         System.out.println("Ошибка запроса, попробуйте еще раз");
                     }
-
                     break;
+
                 case EXIT:
                     System.out.println("Вы ввели Exit, сейчас программа завершит работу");
                     console.close();
