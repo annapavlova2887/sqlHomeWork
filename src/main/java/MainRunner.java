@@ -1,3 +1,4 @@
+import db.MySQLConnect;
 import objects.Animal;
 import tables.AnimalTable;
 import data.Comands;
@@ -98,6 +99,7 @@ public class MainRunner {
                     System.out.println("Вы ввели Exit, сейчас программа завершит работу");
                     console.close();
                     System.exit(0);
+                    MySQLConnect.close();
             }
         }
     }
