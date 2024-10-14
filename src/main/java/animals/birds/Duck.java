@@ -3,8 +3,8 @@ import objects.Animal;
 
 public class Duck extends Animal implements Flying {
 
-    public Duck(String type, String name, String color, int weight, int age) {
-        super(type, name, color, weight, age);
+    public Duck(String name, String color, int weight, int age) {
+        super(name, color, weight, age);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package objects;
 
-public class Animal {
+public abstract class Animal {
     private int id;
-    private String type, name, color;
+    private String name, color;
     private int weight, age;
 
     public long getId() {
@@ -11,14 +11,6 @@ public class Animal {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getName() {
@@ -53,21 +45,10 @@ public class Animal {
         this.age = age;
     }
 
-    public Animal(String type, String name, String color, int weight, int age) {
-        this.type = type;
+    public Animal(String name, String color, int weight, int age) {
         this.name = name;
         this.color = color;
         this.weight = weight;
-        this.age = age;
-    }
-
-
-    public Animal(int id, String type, String name, String color, int weight, int age) {
-        this.id = id;
-        this.color = color;
-        this.name = name;
-        this.weight = weight;
-        this.type = type;
         this.age = age;
     }
 
@@ -101,9 +82,9 @@ public class Animal {
         } else {
             let = " лет";
         }
-        return "Привет! Я " + type + ", меня зовут "
+        return "Привет! Я " + this.getClass().getSimpleName().toLowerCase() + ", меня зовут "
                 + name + ", мне " + age  + let + ", я вешу - "
-                + weight + " кг, мой цвет - " + color + " мой id - " + id;
+                + weight + " кг, мой цвет - " + color;
     }
 
 }

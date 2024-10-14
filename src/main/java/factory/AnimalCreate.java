@@ -74,6 +74,6 @@ public class AnimalCreate {
         System.out.println("Введите цвет");
         String colconsole = consoleForAnCreate.next();
 
-        return new AnimalFactory(animalType, nameconsole, colconsole, waСonsole, ageconsole).create(animal);
+        return new AnimalFactory(nameconsole, colconsole, waСonsole, ageconsole).create(animal);
     }
 }

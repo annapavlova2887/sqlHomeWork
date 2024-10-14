@@ -1,5 +1,7 @@
 package tables;
+import data.ListOfAnimals;
 import db.MySQLConnect;
+import factory.AnimalFactory;
 import objects.Animal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +18,7 @@ public class AnimalTable extends AbsTable {
     public void write(Animal animalTab) {
         this.dbConnector.execute(String.format("INSERT INTO %s (id,color,name,weight,type,age) " +
                         "VALUES('%s','%s','%s','%s','%s','%s')", NAME, animalTab.getId(), animalTab.getColor(), animalTab.getName(),
-                animalTab.getWeight(), animalTab.getType(), animalTab.getAge()));
+                animalTab.getWeight(), animalTab.getClass().getSimpleName(), animalTab.getAge()));
     }
 
     public void print(ResultSet rs) throws SQLException {
@@ -52,15 +54,14 @@ public class AnimalTable extends AbsTable {
                 String color = resultSet.getString("color");
                 int weight = resultSet.getInt("weight");
                 int age = resultSet.getInt("age");
-                Animal animals = new Animal(id, type, name, color, weight, age);
+                Animal animals = new AnimalFactory(name, color, weight, age).create(ListOfAnimals.fromString(type));
                 animal.add(animals);
             }
             return animal;
     }
     public void update(Animal animal) {
-        this.dbConnector.execute(String.format("UPDATE %s SET type='%s', name='%s', color='%s', weight=%s, age=%s WHERE id=%d",
+        this.dbConnector.execute(String.format("UPDATE %s SET name='%s', color='%s', weight=%s, age=%s WHERE id=%d",
                 NAME,
-                animal.getType(),
                 animal.getName(),
                 animal.getColor(),
                 animal.getWeight(),
@@ -68,4 +69,3 @@ public class AnimalTable extends AbsTable {
                 animal.getId()));
     }
 }
-

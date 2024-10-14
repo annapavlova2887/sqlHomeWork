@@ -1,11 +1,6 @@
 package tables;
-
 import db.IDBConnect;
 import db.MySQLConnect;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsTable implements ITable{
@@ -17,7 +12,6 @@ public abstract class AbsTable implements ITable{
         this.tableName = tableName;
     }
 
-    //CREATE TABLE tableName (column1 INT PRIMARY KEY , column2 VARCHAR(255), column3, ...);
     @Override
     public void create(List<String> columns) {
         dbConnector.execute(String.format("CREATE TABLE %s (%s);", tableName, String.join(",", columns)));
